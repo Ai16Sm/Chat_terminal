@@ -1,0 +1,689 @@
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: radial-gradient(circle, #0a0a23, #000);
+  color: white;
+  position: relative;
+  overflow: auto;
+  min-height: 100vh;
+  z-index: 0;
+}
+
+header, section, footer {
+  padding: 20px;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+/* Navbar */
+.navbar a {
+  margin: 0 10px;
+  text-decoration: none;
+  color: white;
+}
+
+/* Hero Section */
+.hero {
+  position: relative;
+  z-index: 2;
+}
+
+.hero h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.hero .buttons button {
+  margin: 5px;
+}
+
+/* Features Section */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+/* Technical Foundation Section */
+.technical-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+/* Roadmap Section */
+.roadmap-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+/* Team Section */
+.team-grid {
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+}
+
+/* Snow Effect */
+.snow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.snowflake {
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.8;
+  pointer-events: none;
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(100vh);
+  }
+}
+
+/* Footer Styles */
+footer {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Terminal Styles */
+.terminal-section {
+  padding: 20px;
+  max-width: 900px;
+  margin: 40px auto;
+}
+
+.terminal-container {
+  background: #0a0a23;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 100, 255, 0.15);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.terminal-header {
+  background: #1a1a35;
+  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.terminal-controls {
+  display: flex;
+  gap: 8px;
+}
+
+.control {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.control.red { background: #ff5f56; }
+.control.yellow { background: #ffbd2e; }
+.control.green { background: #27c93f; }
+
+.terminal-title {
+  color: #8a8aa3;
+  font-size: 14px;
+  margin-left: 20px;
+}
+
+.terminal-body {
+  padding: 20px;
+  min-height: 400px;
+}
+
+.terminal-welcome {
+  text-align: center;
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.terminal-welcome .ai-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-image: url('ai16z.webp');
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 255, 0.2);
+  margin-bottom: 10px;
+}
+
+.terminal-welcome h3 {
+  color: #4a9eff;
+  margin-bottom: 10px;
+}
+
+.terminal-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.terminal-option {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 15px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.terminal-option:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.option-icon {
+  font-size: 24px;
+}
+
+.option-content h4 {
+  margin: 0;
+  color: #4a9eff;
+}
+
+.option-content p {
+  margin: 5px 0 0;
+  font-size: 14px;
+  color: #8a8aa3;
+}
+
+.terminal-chat {
+  display: flex;
+  flex-direction: column;
+  height: 300px;
+}
+
+.chat-messages {
+  flex-grow: 1;
+  overflow-y: auto;
+  margin-bottom: 20px;
+}
+
+.chat-input-container {
+  display: flex;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.chat-input {
+  flex-grow: 1;
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 16px;
+  outline: none;
+}
+
+.chat-submit {
+  background: #4a9eff;
+  border: none;
+  border-radius: 6px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.chat-submit:hover {
+  background: #357abd;
+}
+
+.chat-submit svg {
+  width: 20px;
+  height: 20px;
+  color: white;
+}
+
+/* Chat Message Styles */
+.message {
+  margin-bottom: 20px;
+  opacity: 0;
+  animation: fadeIn 0.3s forwards;
+}
+
+.message-content {
+  display: flex;
+  gap: 15px;
+  padding: 15px;
+  border-radius: 12px;
+  max-width: 80%;
+  align-items: flex-start;
+}
+
+.user-message .message-content {
+  background: rgba(74, 158, 255, 0.1);
+  margin-left: auto;
+}
+
+.ai-message .message-content {
+  background: rgba(255, 255, 255, 0.05);
+  margin-right: auto;
+}
+
+.message-icon {
+  font-size: 20px;
+}
+
+.message-text {
+  line-height: 1.4;
+  opacity: 0;
+  animation: fadeIn 0.5s forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Update the AI message icon styles */
+.ai-message .message-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-image: url('ai16z.webp');
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 255, 0.2);
+}
+
+/* Add hover effect on AI avatar */
+.ai-message .message-icon:hover {
+  transform: scale(1.05);
+  transition: transform 0.2s ease;
+}
+
+/* Loading indicator styles */
+.loading-dots {
+  display: inline-block;
+}
+
+.loading-dots span {
+  animation: loadingDots 1.4s infinite;
+  opacity: 0;
+}
+
+.loading-dots span:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.loading-dots span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.loading-dots span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes loadingDots {
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.loading .message-content {
+  opacity: 0.7;
+  background: rgba(74, 158, 255, 0.1);
+}
+
+.loading-dots {
+  color: #4a9eff;
+  font-weight: 500;
+}
+
+/* Add a Hugging Face themed color to the AI avatar */
+.ai-message .message-icon {
+  background: linear-gradient(135deg, #4a9eff 0%, #357abd 100%);
+  border: 2px solid rgba(74, 158, 255, 0.2);
+}
+
+/* Add a pulsing effect during loading */
+.loading .message-icon {
+  animation: pulse 1.5s ease infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+/* Code block styles */
+.code-block {
+  background: #1e1e3f;
+  border-radius: 8px;
+  margin: 10px 0;
+  overflow: hidden;
+}
+
+.code-header {
+  background: #2d2b55;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.code-header button {
+  background: #4a9eff;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  padding: 4px 8px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: background 0.3s ease;
+}
+
+.code-header button:hover {
+  background: #357abd;
+}
+
+.code-block pre {
+  margin: 0;
+  padding: 12px;
+  overflow-x: auto;
+}
+
+.code-block code {
+  font-family: 'Fira Code', monospace;
+  font-size: 14px;
+}
+
+.code-output {
+  background: #0a0a23;
+  border-top: 1px solid #2d2b55;
+  padding: 12px;
+  min-height: 24px;
+}
+
+.code-output .error {
+  color: #ff5f56;
+}
+
+/* Syntax highlighting theme */
+.hljs {
+  color: #e7e9f5;
+  background: #1e1e3f;
+}
+
+.hljs-keyword { color: #ff9d00; }
+.hljs-string { color: #a5ff90; }
+.hljs-number { color: #ff628c; }
+.hljs-comment { color: #b362ff; }
+
+/* Modern Content Box Styles */
+.content-box {
+    background: linear-gradient(145deg, rgba(31, 41, 55, 0.8), rgba(17, 24, 39, 0.8));
+    backdrop-filter: blur(8px);
+    border-radius: 16px;
+    padding: 2.5rem 2rem 2rem;
+    text-align: center;
+    position: relative;
+    margin: 2rem auto;
+    width: 100%;
+    max-width: 350px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.content-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.content-box::before {
+    content: "";
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #3b82f6;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3);
+    transition: all 0.3s ease;
+}
+
+.content-box:hover::before {
+    transform: translateX(-50%) scale(1.1);
+    box-shadow: 0 6px 12px rgba(59, 130, 246, 0.4);
+}
+
+.icon {
+    position: absolute;
+    top: -22px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 28px;
+    color: white;
+    z-index: 1;
+    transition: all 0.3s ease;
+}
+
+.content-box:hover .icon {
+    transform: translateX(-50%) scale(1.1);
+}
+
+.content-title {
+    font-size: 1.5em;
+    font-weight: 700;
+    margin: 1rem 0;
+    letter-spacing: 0.5px;
+}
+
+.content-description {
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-top: 1rem;
+    padding: 0 0.5rem;
+}
+
+/* Grid layouts with more spacing */
+.features-grid,
+.technical-grid,
+.roadmap-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4rem;
+    padding: 4rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Center items in incomplete rows */
+.features-grid .content-box:last-child:nth-child(3n-2),
+.technical-grid .content-box:last-child:nth-child(3n-2),
+.technical-grid .content-box:only-child {
+    grid-column: 2;  /* Center if it's a single item */
+}
+
+/* For roadmap items */
+.roadmap-grid .content-box:last-child:nth-child(3n-2) {
+    grid-column: 2;
+}
+
+/* Section spacing */
+section {
+    padding: 6rem 0;
+    margin: 2rem 0;
+}
+
+/* Section titles with more space */
+section h2 {
+    font-size: 2.8em;
+    font-weight: 800;
+    text-align: center;
+    margin: 4rem 0 2rem;
+    letter-spacing: 1px;
+}
+
+section > p {
+    max-width: 800px;
+    margin: 0 auto 4rem;
+    font-size: 1.2em;
+    line-height: 1.6;
+    padding: 0 2rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    .features-grid,
+    .technical-grid,
+    .roadmap-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 3rem;
+        padding: 3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .features-grid,
+    .technical-grid,
+    .roadmap-grid {
+        grid-template-columns: 1fr;
+        gap: 4rem;
+        padding: 2rem;
+    }
+    
+    section {
+        padding: 4rem 0;
+    }
+}
+
+/* Gradient Text Effect */
+.gradient-text {
+    background: linear-gradient(180deg, #ffffff 0%, #a3cfff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+}
+
+/* Navigation and Hero Text Styles */
+.navbar h1 {
+    background: linear-gradient(180deg, #ffffff 0%, #a3cfff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+    font-size: 2em;
+    font-weight: 800;
+}
+
+.navbar nav a {
+    background: linear-gradient(180deg, #ffffff 0%, #a3cfff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.hero h2 {
+    background: linear-gradient(180deg, #ffffff 0%, #a3cfff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+    font-size: 2.5em;
+    font-weight: 700;
+}
+
+.contract p, .contract span {
+    background: linear-gradient(180deg, #ffffff 0%, #a3cfff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+}
+
+.contract code {
+    background: linear-gradient(180deg, #ffffff 30%, #a3cfff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+    font-family: monospace;
+}
+
+/* Team Section Text Gradients */
+.team-section h2 {
+    background: linear-gradient(180deg, #ff4b4b 0%, #4b83ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+}
+
+.team-section > p {
+    background: linear-gradient(180deg, #ff6b6b 0%, #6b9fff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+}
+
+.team-member h3 {
+    background: linear-gradient(180deg, #ff5555 0%, #5555ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+    font-size: 1.8em;
+    margin-bottom: 0.5rem;
+}
+
+.team-member p:first-of-type {
+    background: linear-gradient(180deg, #ff7777 0%, #7777ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.team-member p:last-of-type {
+    background: linear-gradient(180deg, #ff8888 0%, #8888ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+    line-height: 1.6;
+}
