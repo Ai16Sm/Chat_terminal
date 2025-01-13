@@ -46,32 +46,37 @@ function initializeSnowAnimation() {
   snowContainer.classList.add('snow');
   document.body.appendChild(snowContainer);
 
-  const createSnowflake = () => {
+  function createSnowflake() {
     const snowflake = document.createElement('div');
     snowflake.classList.add('snowflake');
 
+    // Randomize snowflake properties
     const size = Math.random() * 4 + 2;
+    const startingLeft = Math.random() * 100;
+    const animationDuration = Math.random() * 8 + 4;
+    const animationDelay = Math.random() * -20; // Negative delay for smoother initial appearance
+
     snowflake.style.width = `${size}px`;
     snowflake.style.height = `${size}px`;
-    snowflake.style.left = `${Math.random() * 100}vw`;
-    snowflake.style.animationDuration = `${Math.random() * 8 + 4}s`;
-    snowflake.style.animationDelay = `${Math.random() * 5}s`;
-    snowflake.style.opacity = Math.random();
+    snowflake.style.left = `${startingLeft}vw`;
+    snowflake.style.animationDuration = `${animationDuration}s`;
+    snowflake.style.animationDelay = `${animationDelay}s`;
 
     snowContainer.appendChild(snowflake);
 
+    // Remove snowflake after animation
     snowflake.addEventListener('animationend', () => {
       snowflake.remove();
     });
-  };
+  }
 
-  // Create initial snowflakes
-  for (let i = 0; i < 10; i++) {
+  // Create more initial snowflakes for a fuller effect
+  for (let i = 0; i < 30; i++) {
     createSnowflake();
   }
 
-  // Continue creating snowflakes
-  setInterval(createSnowflake, 1000);
+  // Create new snowflakes more frequently
+  setInterval(createSnowflake, 200);  // Reduced from 1000ms to 200ms
 }
 
 // Separate chat terminal logic into its own function
@@ -111,7 +116,7 @@ function initializeChatTerminal() {
     
     const iconHtml = isUser 
       ? '<span class="message-icon">👤</span>'
-      : '<span class="message-icon"></span>';
+      : '<span class="message-icon" style="background-image: url(\'ai16z.webp\'); background-size: cover;"></span>';
       
     // Process code blocks and format message
     let processedMessage = message;
@@ -305,7 +310,7 @@ function addProgressiveMessage(message, isUser = false) {
   
   const iconHtml = isUser 
     ? '<span class="message-icon">👤</span>'
-    : '<span class="message-icon"></span>';
+    : '<span class="message-icon" style="background-image: url(\'ai16z.webp\'); background-size: cover;"></span>';
   
   content.innerHTML = `
     ${iconHtml}

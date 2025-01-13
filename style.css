@@ -82,18 +82,23 @@ header, section, footer {
   position: absolute;
   background: white;
   border-radius: 50%;
-  opacity: 0.8;
+  opacity: 0;
   pointer-events: none;
-  animation: fall linear infinite;
+  animation: fall linear infinite, fadeIn 0.5s ease forwards;
 }
 
 @keyframes fall {
   0% {
-    transform: translateY(0);
+    transform: translateY(-10px);
   }
   100% {
     transform: translateY(100vh);
   }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 0.8; }
 }
 
 /* Footer Styles */
@@ -295,7 +300,10 @@ footer {
 }
 
 .message-icon {
-  font-size: 20px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: inline-block;
 }
 
 .message-text {
@@ -320,7 +328,12 @@ footer {
   box-shadow: 0 2px 8px rgba(0, 0, 255, 0.2);
 }
 
-/* Add hover effect on AI avatar */
+/* Remove the previous gradient background */
+.ai-message .message-icon {
+  background: none;
+}
+
+/* Keep the hover and loading animations */
 .ai-message .message-icon:hover {
   transform: scale(1.05);
   transition: transform 0.2s ease;
@@ -334,6 +347,7 @@ footer {
 .loading-dots span {
   animation: loadingDots 1.4s infinite;
   opacity: 0;
+  animation: fadeIn 0.5s forwards;
 }
 
 .loading-dots span:nth-child(1) {
@@ -447,243 +461,485 @@ footer {
 
 /* Modern Content Box Styles */
 .content-box {
-    background: linear-gradient(145deg, rgba(31, 41, 55, 0.8), rgba(17, 24, 39, 0.8));
-    backdrop-filter: blur(8px);
-    border-radius: 16px;
-    padding: 2.5rem 2rem 2rem;
-    text-align: center;
-    position: relative;
-    margin: 2rem auto;
-    width: 100%;
-    max-width: 350px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-}
-
-.content-box:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
-}
-
-.content-box::before {
-    content: "";
-    position: absolute;
-    top: -25px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #3b82f6;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3);
-    transition: all 0.3s ease;
-}
-
-.content-box:hover::before {
-    transform: translateX(-50%) scale(1.1);
-    box-shadow: 0 6px 12px rgba(59, 130, 246, 0.4);
-}
-
-.icon {
-    position: absolute;
-    top: -22px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 28px;
-    color: white;
-    z-index: 1;
-    transition: all 0.3s ease;
-}
-
-.content-box:hover .icon {
-    transform: translateX(-50%) scale(1.1);
-}
-
-.content-title {
-    font-size: 1.5em;
-    font-weight: 700;
-    margin: 1rem 0;
-    letter-spacing: 0.5px;
+  background: linear-gradient(145deg, rgba(31, 41, 55, 0.8), rgba(17, 24, 39, 0.8));
+  backdrop-filter: blur(8px);
+  border-radius: 16px;
+  padding: 2.5rem 2rem 2rem;
+  text-align: center;
+  position: relative;
+  margin: 2rem auto;
+  width: 100%;
+  max-width: 350px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  min-height: 250px; /* Set minimum height for consistency */
 }
 
 .content-description {
-    font-size: 1rem;
-    line-height: 1.7;
-    margin-top: 1rem;
-    padding: 0 0.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 1rem;
+  margin-top: 1rem;
+}
+
+.content-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.content-box::before {
+  content: "";
+  position: absolute;
+  top: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #3b82f6;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3);
+  transition: all 0.3s ease;
+}
+
+.content-box:hover::before {
+  transform: translateX(-50%) scale(1.1);
+  box-shadow: 0 6px 12px rgba(59, 130, 246, 0.4);
+}
+
+.icon {
+  position: absolute;
+  top: -22px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 28px;
+  color: white;
+  z-index: 1;
+  transition: all 0.3s ease;
+}
+
+.content-box:hover .icon {
+  transform: translateX(-50%) scale(1.1);
+}
+
+.content-title {
+  font-size: 1.5em;
+  font-weight: 700;
+  margin: 1rem 0;
+  letter-spacing: 0.5px;
+}
+
+.content-description {
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-top: 1rem;
+  padding: 0 0.5rem;
 }
 
 /* Grid layouts with more spacing */
 .features-grid,
 .technical-grid,
 .roadmap-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 4rem;
-    padding: 4rem;
-    max-width: 1400px;
-    margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4rem;
+  padding: 4rem;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 /* Center items in incomplete rows */
 .features-grid .content-box:last-child:nth-child(3n-2),
 .technical-grid .content-box:last-child:nth-child(3n-2),
 .technical-grid .content-box:only-child {
-    grid-column: 2;  /* Center if it's a single item */
+  grid-column: 2;  /* Center if it's a single item */
 }
 
 /* For roadmap items */
 .roadmap-grid .content-box:last-child:nth-child(3n-2) {
-    grid-column: 2;
+  grid-column: 2;
 }
 
 /* Section spacing */
 section {
-    padding: 6rem 0;
-    margin: 2rem 0;
+  padding: 6rem 0;
+  margin: 2rem 0;
 }
 
 /* Section titles with more space */
 section h2 {
-    font-size: 2.8em;
-    font-weight: 800;
-    text-align: center;
-    margin: 4rem 0 2rem;
-    letter-spacing: 1px;
+  font-size: 2.8em;
+  font-weight: 800;
+  text-align: center;
+  margin: 4rem 0 2rem;
+  letter-spacing: 1px;
 }
 
 section > p {
-    max-width: 800px;
-    margin: 0 auto 4rem;
-    font-size: 1.2em;
-    line-height: 1.6;
-    padding: 0 2rem;
+  max-width: 800px;
+  margin: 0 auto 4rem;
+  font-size: 1.2em;
+  line-height: 1.6;
+  padding: 0 2rem;
 }
 
 /* Responsive adjustments */
 @media (max-width: 1024px) {
-    .features-grid,
-    .technical-grid,
-    .roadmap-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 3rem;
-        padding: 3rem;
-    }
+  .features-grid,
+  .technical-grid,
+  .roadmap-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+    padding: 3rem;
+  }
 }
 
 @media (max-width: 768px) {
-    .features-grid,
-    .technical-grid,
-    .roadmap-grid {
-        grid-template-columns: 1fr;
-        gap: 4rem;
-        padding: 2rem;
-    }
-    
-    section {
-        padding: 4rem 0;
-    }
+  .features-grid,
+  .technical-grid,
+  .roadmap-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    padding: 1rem;
+    margin: 0 auto;
+  }
+  
+  section {
+    padding: 4rem 0;
+  }
 }
 
 /* Gradient Text Effect */
 .gradient-text {
-    background: linear-gradient(180deg, #ffffff 0%, #a3cfff 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-fill-color: transparent;
+  background: linear-gradient(180deg, #ffffff 0%, #a3cfff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
 }
 
 /* Navigation and Hero Text Styles */
 .navbar h1 {
-    background: linear-gradient(180deg, #ffffff 0%, #a3cfff 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-fill-color: transparent;
-    font-size: 2em;
-    font-weight: 800;
+  background: linear-gradient(180deg, #ffffff 0%, #a3cfff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  font-size: 2em;
+  font-weight: 800;
 }
 
 .navbar nav a {
-    background: linear-gradient(180deg, #ffffff 0%, #a3cfff 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-fill-color: transparent;
-    text-decoration: none;
-    font-weight: 600;
+  background: linear-gradient(180deg, #ffffff 0%, #a3cfff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  text-decoration: none;
+  font-weight: 600;
 }
 
 .hero h2 {
-    background: linear-gradient(180deg, #ffffff 0%, #a3cfff 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-fill-color: transparent;
-    font-size: 2.5em;
-    font-weight: 700;
+  background: linear-gradient(180deg, #ffffff 0%, #a3cfff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  font-size: 2.5em;
+  font-weight: 700;
 }
 
 .contract p, .contract span {
-    background: linear-gradient(180deg, #ffffff 0%, #a3cfff 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-fill-color: transparent;
+  background: linear-gradient(180deg, #ffffff 0%, #a3cfff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
 }
 
 .contract code {
-    background: linear-gradient(180deg, #ffffff 30%, #a3cfff 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-fill-color: transparent;
-    font-family: monospace;
+  background: linear-gradient(180deg, #ffffff 30%, #a3cfff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  font-family: monospace;
 }
 
 /* Team Section Text Gradients */
 .team-section h2 {
-    background: linear-gradient(180deg, #ff4b4b 0%, #4b83ff 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-fill-color: transparent;
+  background: linear-gradient(180deg, #ff4b4b 0%, #4b83ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
 }
 
 .team-section > p {
-    background: linear-gradient(180deg, #ff6b6b 0%, #6b9fff 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-fill-color: transparent;
+  background: linear-gradient(180deg, #ff6b6b 0%, #6b9fff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
 }
 
 .team-member h3 {
-    background: linear-gradient(180deg, #ff5555 0%, #5555ff 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-fill-color: transparent;
-    font-size: 1.8em;
-    margin-bottom: 0.5rem;
+  background: linear-gradient(180deg, #ff5555 0%, #5555ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  font-size: 1.8em;
+  margin-bottom: 0.5rem;
 }
 
 .team-member p:first-of-type {
-    background: linear-gradient(180deg, #ff7777 0%, #7777ff 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-fill-color: transparent;
-    font-weight: 600;
-    margin-bottom: 1rem;
+  background: linear-gradient(180deg, #ff7777 0%, #7777ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  font-weight: 600;
+  margin-bottom: 1rem;
 }
 
 .team-member p:last-of-type {
-    background: linear-gradient(180deg, #ff8888 0%, #8888ff 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-fill-color: transparent;
-    line-height: 1.6;
+  background: linear-gradient(180deg, #ff8888 0%, #8888ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  line-height: 1.6;
+}
+
+/* Single consolidated mobile media query */
+@media screen and (max-width: 768px) {
+  /* Navbar mobile styles */
+  .navbar {
+    flex-direction: column;
+    padding: 1rem;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .navbar nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .navbar nav a {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    width: auto;
+    background: none;
+    -webkit-background-clip: initial;
+    -webkit-text-fill-color: white;
+    background-clip: initial;
+    text-fill-color: white;
+    color: white;
+  }
+
+  /* Add hover effect for better interaction */
+  .navbar nav a:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  /* Hero section mobile styles */
+  .hero {
+    padding: 1rem;
+  }
+
+  .hero h2 {
+    font-size: 1.8em;
+    padding: 0 1rem;
+    margin: 1rem 0;
+  }
+
+  .contract {
+    padding: 1rem;
+    word-break: break-all;
+    font-size: 0.9em;
+  }
+
+  /* Grid layouts for mobile */
+  .features-grid,
+  .technical-grid,
+  .roadmap-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    padding: 1rem;
+    margin: 0 auto;
+  }
+
+  /* Content box adjustments */
+  .content-box {
+    margin: 0.5rem auto;
+    padding: 1rem 0.5rem;
+    min-height: 130px;
+  }
+
+  /* Specifically target the Governance box */
+  .technical-grid .content-box:nth-child(4) {
+    grid-column: 2;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .content-box::before {
+    top: -20px;
+    width: 30px;
+    height: 30px;
+  }
+
+  .icon {
+    top: -18px;
+    font-size: 16px;
+  }
+
+  /* Text sizing */
+  .content-title {
+    font-size: 0.8em;
+    margin: 0.25rem 0;
+  }
+
+  .content-description {
+    font-size: 0.7rem;
+    line-height: 1.3;
+    padding: 0 0.25rem;
+    text-align: center;
+  }
+
+  /* Terminal section */
+  .terminal-section {
+    padding: 1rem;
+    margin: 1rem auto;
+  }
+
+  .terminal-container {
+    border-radius: 8px;
+    margin: 0;
+  }
+
+  .terminal-body {
+    padding: 1rem;
+  }
+
+  .terminal-welcome {
+    padding: 1rem;
+  }
+
+  .terminal-options {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+    margin-bottom: 1rem;
+  }
+
+  /* Chat interface */
+  .chat-messages {
+    padding: 0.5rem;
+  }
+
+  .message-content {
+    max-width: 85%;
+    padding: 0.8rem;
+    font-size: 0.9em;
+  }
+
+  /* Team section */
+  .team-grid {
+    flex-direction: column;
+    gap: 2rem;
+    padding: 1rem;
+  }
+
+  .team-member {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  /* Section spacing */
+  section {
+    padding: 2rem 0;
+    margin: 1rem 0;
+  }
+
+  section h2 {
+    font-size: 1.8em;
+    margin: 1rem 0;
+    padding: 0 1rem;
+  }
+
+  section > p {
+    font-size: 1rem;
+    padding: 0 1.5rem;
+    margin-bottom: 1rem;
+  }
+}
+
+/* Keep the very small screen media query separate */
+@media screen and (max-width: 380px) {
+  .navbar h1 {
+    font-size: 1.8em;
+  }
+
+  .hero h2 {
+    font-size: 1.5em;
+  }
+
+  .content-box {
+    max-width: 95%;
+  }
+
+  .terminal-title {
+    font-size: 0.8em;
+  }
+
+  .chat-input {
+    font-size: 0.9em;
+  }
+
+  .features-grid,
+  .technical-grid,
+  .roadmap-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Fix for iOS Safari viewport height */
+@supports (-webkit-touch-callout: none) {
+  .terminal-chat,
+  .chat-messages {
+    height: calc(100vh - 250px);
+    max-height: 500px;
+  }
+}
+
+/* Additional style to ensure content is centered vertically */
+.content-box .content-title {
+  margin-bottom: 1rem;
+}
+
+.content-box .content-description {
+  text-align: center;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* Additional adjustments for very small screens */
+@media screen and (max-width: 380px) {
+  .features-grid,
+  .technical-grid,
+  .roadmap-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns on very small screens */
+  }
 }
